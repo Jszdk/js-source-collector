@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "前端源码采集器",
+  "version": "1.0.0",
+  "description": "下载网页前端源码（JS/Vue/CSS）用于代码审计，支持 Source Map 还原",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["lib/jszip.min.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
